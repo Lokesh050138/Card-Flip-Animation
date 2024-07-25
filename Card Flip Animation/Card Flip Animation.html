@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Flip Animation</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        .heading h1 {
+            text-align: center;
+          font-family:"Euclid circular a", sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            padding: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .col {
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            width: 100%;
+            height: 463px;
+            perspective: 1000px;
+            border: 0;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 2rem;
+            backface-visibility: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .card-front {
+            background-color: rgb(250, 203, 65);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        .card-front .front-text {
+            padding: 2rem;
+        }
+
+        .card-front .front-text p {
+            color: #9e7a0f;
+            font-weight: bold;
+            font-family: "Euclid circular a", sans-serif;
+            font-size: 24px;
+        }
+
+        .card-front .front-text h4 {
+            font-family: "Euclid circular a", sans-serif;
+            color: white;
+            font-weight: bold;
+            font-size: 32px;
+        }
+
+        .front-img img {
+            margin-top: .7rem;
+            width: 250px;
+            height: 250px;
+            border-bottom-left-radius: 2rem;
+        }
+
+        .card-front .front-img .icon img {
+            margin-top: -5rem;
+            margin-right: 2rem;
+            float: right;
+            width: 35px;
+            height: 35px;
+            padding: .5rem;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: white;
+            box-sizing: border-box;
+            border: .1rem solid rgb(223, 223, 223);
+        }
+
+        .card-back .back-text {
+            padding: 2rem;
+
+        }
+
+        .card-back .back-text p {
+            color: black;
+            font-weight: bold;
+            font-family: "Euclid circular a", sans-serif;
+            font-size: 24px;
+        }
+
+        .card-back .back-text h4 {
+            font-family: "Euclid circular a", sans-serif;
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .card-back .back-text h3 {
+            font-family: "Euclid circular a", sans-serif;
+            color: rgb(154, 154, 154);
+            font-size: 20px;
+            font-weight: 100;
+        }
+
+        .card-back .icon img {
+            margin-top: 1.5rem;
+            margin-right: 2rem;
+            float: right;
+            width: 35px;
+            height: 35px;
+            padding: .5rem;
+            border-radius: 50%;
+            background-color: rgb(250, 203, 65);
+        }
+
+        /* ------------ */
+        .card-front02 {
+            background-color: rgb(236, 114, 75);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        .card-front02 .front-text p {
+            color: #a94b2d;
+            font-weight: bold;
+            font-family: "Euclid circular a", sans-serif;
+            font-size: 24px;
+        }
+
+        .card-front02 .front-img img {
+            border-bottom-left-radius: 2rem;
+        }
+
+        .card-back02 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .card-back02 .icon img {
+            background-color: rgb(236, 114, 75);
+            margin-top: .5rem;
+        }
+
+        .card-back02 p {
+            font-weight: bold;
+        }
+
+        /* ------------ */
+        .card-front03 {
+            background-color: rgb(0, 201, 182);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        .card-front03 .front-text p {
+            color: rgb(9, 120, 109);
+            font-weight: bold;
+            font-family: "Euclid circular a", sans-serif;
+            font-size: 24px;
+        }
+
+        .card-front03 .front-img img {
+            border-bottom-left-radius: 2rem;
+        }
+
+        .card-back03 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-back03 p {
+            font-weight: bold;
+        }
+
+        .card-back03 .icon img {
+            background-color: rgb(0, 201, 182);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container heading">
+        <h1>Tailored Solutions For Different Stages Of Growth</h1>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <div class="col">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-inner contaie">
+                        <div class="card-front">
+                            <div class="front-text">
+                                <p>01</p>
+                                <h4>For startups and small businesses</h4>
+                            </div>
+                            <div class="front-img">
+                                <img src="./63e90055037f3b91a0d36069_Group 14582335.svg" alt="">
+
+                                <div class="icon">
+                                    <img src="./63e8f9581eb4ad5b75eaf599_Vector.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-text">
+                                <p>01</p>
+                                <h4>For startups and small businesses,</h4>
+                                <h3>we can help establish a strong foundation for user-centered design. This includes
+                                    conducting
+                                    user research, creating wireframes and prototypes, and designing a visually
+                                    appealing and
+                                    user-friendly interface.</h3>
+                            </div>
+                            <div class="icon">
+                                <img src="./63e8f9581eb4ad5b75eaf599_Vector.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-inner contaie">
+                        <div class="card-front card-front02">
+                            <div class="front-text">
+                                <p>02</p>
+                                <h4>For established companies</h4>
+                            </div>
+                            <div class="front-img">
+                                <img src="./63e8ff3bc21faa2b1fc64b73_Mask Groupa.svg" alt="">
+
+                                <div class="icon">
+                                    <img src="./63e8f9581eb4ad5b75eaf599_Vector.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back card-back02">
+                            <div class="back-text ">
+                                <p>02</p>
+                                <h4>For established companies,</h4>
+                                <h3>we can help you take your digital presence to the next level. This might include
+                                    redesigning
+                                    your website or mobile app to improve user engagement and conversion rates, or
+                                    creating a
+                                    design
+                                    system to ensure consistency across all digital touch points.</h3>
+                            </div>
+                            <div class="icon">
+                                <img src="./63e8f9581eb4ad5b75eaf599_Vector.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-inner contaie">
+                        <div class="card-front card-front03">
+                            <div class="front-text">
+                                <p>03</p>
+                                <h4>For companies in high-growth mode</h4>
+                            </div>
+                            <div class="front-img">
+                                <img src="./63e8ff91e00682f42508f821_Group 14582557.svg" alt="">
+
+                                <div class="icon">
+                                    <img src="./63e8f9581eb4ad5b75eaf599_Vector.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back card-back03">
+                            <div class="back-text ">
+                                <p>03</p>
+                                <h4>For companies in high-growth mode,</h4>
+                                <h3>our team can provide support for scaling your design efforts. This creating design
+                                    guidelines and design systems, training internal teams on design best practice and
+                                    providing
+                                    ongoing design support as needed.
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <img src="./63e8f9581eb4ad5b75eaf599_Vector.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var currentlyFlippedCard = null;
+
+        function flipCard(card) {
+            card.classList.toggle('card-flipped');
+
+            if (currentlyFlippedCard && currentlyFlippedCard !== card) {
+                currentlyFlippedCard.classList.remove('card-flipped');
+            }
+
+            currentlyFlippedCard = card.classList.contains('card-flipped') ? card : null;
+        }
+    </script>
+
+</body>
+
+</html>
